@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-#from flask_jwt import jwt_required
+from flask_jwt import jwt_required
 from models.item import ItemModel
 
 class Item(Resource):
@@ -15,7 +15,7 @@ class Item(Resource):
                         required=True,
                         help="Every item needs a store_id."
                         )
-
+    @jwt_required()
     def get(self, name):
 
         # check if item exists in the items table and return it
